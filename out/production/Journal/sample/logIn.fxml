@@ -34,7 +34,7 @@
       </Label>
       <TextField fx:id="returningUserInput" layoutX="141.0" layoutY="175.0" prefHeight="31.0" prefWidth="121.0" promptText="username" />
       <TextField fx:id="returningPassInput" layoutX="141.0" layoutY="216.0" prefHeight="31.0" prefWidth="121.0" promptText="password" />
-      <Button fx:id="logInButton" layoutX="171.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleLogInPress" text="Login">
+      <Button fx:id="logInButton" layoutX="154.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleLogInPress" text="Login">
          <font>
             <Font name="Consolas" size="15.0" />
          </font>
@@ -61,10 +61,6 @@
          </font>
       </Button>
       <TextField fx:id="newPassInput" layoutX="420.0" layoutY="213.0" prefHeight="31.0" prefWidth="121.0" promptText="password" />
-      <Label fx:id="invalidLogInLabel" layoutX="140.0" layoutY="247.0" text="*Invalid Login*" textFill="#d30000">
-         <font>
-            <Font name="Consolas" size="15.0" />
-         </font>
-      </Label>
+      <Label fx:id="invalidLogInLabel" layoutX="153.0" layoutY="247.0" text="*Invalid Login*" textFill="#d30000" />
    </children>
 </AnchorPane>
