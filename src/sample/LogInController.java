@@ -4,37 +4,37 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 public class LogInController implements Initializable{
 
     @FXML
     Button logInButton, signUpButton;
     @FXML
-    TextField newUserInput, newPassInput, returningUserInput, returningPassInput;
+    TextField newUserInput, returningUserInput;
     @FXML
-    Label invalidLogInLabel;
+    PasswordField newPassInput, returningPassInput;
+    @FXML
+    Label invalidLogInLabel, invalidSignUpLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         invalidLogInLabel.setVisible(false);
+        invalidSignUpLabel.setVisible(false);
     }
 
     public void handleLogInPress() throws SQLException{
         String databaseUsername = "";
         String databasePassword = "";
-        String name = returningUserInput.getText();
+        String username = returningUserInput.getText();
         String password = returningPassInput.getText();
 
-        String SQL = "SELECT * FROM users WHERE username='" + name + "' AND password='" + password+ "'";
+        String SQL = "SELECT * FROM users WHERE username='" + username + "' AND password='" + password+ "'";
 
         try(Connection con = DBConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(SQL);
@@ -46,6 +46,9 @@ public class LogInController implements Initializable{
                 databasePassword = rs.getString("password");
                 System.out.println("Successful Login!\n----");
                 successfulLogin=true;
+
+                ProgramController.loadUser(rs.getInt("id"));
+
             }
             if(!successfulLogin){
                 System.out.println("Incorrect Password or Username\n----");
@@ -60,10 +63,48 @@ public class LogInController implements Initializable{
         }
     }
 
-    public void handleSignUpPress(){
+    public void handleSignUpPress()throws SQLException{
+
+        String username = newUserInput.getText();
+        String password = newPassInput.getText();
+
+        String SQL = "INSERT into users(id, username, password) VALUES (?,?,?)";
+        Connection con = DBConnection.getConnection();
+        PreparedStatement stmt = con.prepareStatement(SQL);
+        try{
+            if(!username.trim().isEmpty() && !password.trim().isEmpty()){
+                stmt.setInt(1,getNextId());
+                stmt.setString(2,username);
+                stmt.setString(3,password);
+
+                stmt.execute();
+
+                User user = new User(getNextId(), username, password);
+                ProgramController.setCurrentUser(user);
+            }else{
+                invalidSignUpLabel.setVisible(true);
+                invalidSignUpLabel.setText("Can't be left empty");
+            }
+
+        }catch(SQLIntegrityConstraintViolationException e){
+            invalidSignUpLabel.setVisible(true);
+            invalidSignUpLabel.setText("Username or password \nalready exists");
+        }
+
+
 
     }
 
+    private static int getNextId()throws SQLException{
+
+        Connection con = DBConnection.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM users");
+        rs.last();
+
+        return rs.getRow()+1;
+
+    }
 
 
 

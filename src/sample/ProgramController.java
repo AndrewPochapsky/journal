@@ -19,8 +19,12 @@ public class ProgramController {
         objectOutputStream.writeObject(user);
     }
 
-    public static void loadUser(User user){
-
+    public static void loadUser(int id)throws IOException, ClassNotFoundException{
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("users/user"+id+".bin"));
+        User user = (User)objectInputStream.readObject();
+        ProgramController.setCurrentUser(user);
     }
+
+
 
 }
