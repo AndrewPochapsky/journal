@@ -33,7 +33,7 @@
       </Label>
       <TextField fx:id="returningUserInput" layoutX="141.0" layoutY="175.0" prefHeight="31.0" prefWidth="121.0" promptText="username" />
       <PasswordField fx:id="returningPassInput" layoutX="140.0" layoutY="216.0" prefHeight="31.0" prefWidth="124.0" promptText="password" />
-      <Button fx:id="logInButton" layoutX="171.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleLogInPress" text="Login">
+      <Button fx:id="logInButton" layoutX="166.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleLogInPress" text="Login">
          <font>
             <Font name="Consolas" size="15.0" />
          </font>
@@ -55,7 +55,7 @@
             <Font name="Consolas" size="25.0" />
          </font>
       </Label>
-      <Button fx:id="signUpButton" layoutX="442.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleSignUpPress" text="Sign Up">
+      <Button fx:id="signUpButton" layoutX="413.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleSignUpPress" text="Create Account">
          <font>
             <Font name="Consolas" size="15.0" />
          </font>

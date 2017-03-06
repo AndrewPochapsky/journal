@@ -1,19 +1,20 @@
 package sample;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
 public class LogInController implements Initializable{
-
+    ProgramController controller = new ProgramController();
     @FXML
     Button logInButton, signUpButton, exitButton;
     @FXML
@@ -29,9 +30,9 @@ public class LogInController implements Initializable{
         invalidSignUpLabel.setVisible(false);
     }
 
-    public void handleLogInPress() throws SQLException{
-        String databaseUsername = "";
-        String databasePassword = "";
+    public void handleLogInPress(ActionEvent event) throws SQLException, IOException{
+        //String databaseUsername = "";
+        //String databasePassword = "";
         String username = returningUserInput.getText();
         String password = returningPassInput.getText();
 
@@ -43,13 +44,12 @@ public class LogInController implements Initializable{
             ){
             boolean successfulLogin = false;
             while(rs.next()){
-                databaseUsername = rs.getString("username");
-                databasePassword = rs.getString("password");
+                //databaseUsername = rs.getString("username");
+                //databasePassword = rs.getString("password");
                 System.out.println("Successful Login!\n----");
                 successfulLogin=true;
-
                 ProgramController.loadUser(rs.getInt("id"));
-
+                controller.loadScene(event, "main");
             }
             if(!successfulLogin){
                 System.out.println("Incorrect Password or Username\n----");
@@ -60,7 +60,7 @@ public class LogInController implements Initializable{
         }
     }
 
-    public void handleSignUpPress()throws SQLException{
+    public void handleSignUpPress(ActionEvent event)throws SQLException, IOException{
 
         String username = newUserInput.getText();
         String password = newPassInput.getText();
@@ -76,8 +76,10 @@ public class LogInController implements Initializable{
 
                 stmt.execute();
 
-                User user = new User(getNextId(), username, password);
+                User user = new User(getNextId()-1, username, password);
+                ProgramController.saveUser(user);
                 ProgramController.setCurrentUser(user);
+                controller.loadScene(event, "main");
             }else{
                 invalidSignUpLabel.setVisible(true);
                 invalidSignUpLabel.setText("Can't be left empty");
@@ -105,6 +107,10 @@ public class LogInController implements Initializable{
     public void handleExitPress(){
         Platform.exit();
     }
+
+
+    //public Button button;
+
 
 
 
