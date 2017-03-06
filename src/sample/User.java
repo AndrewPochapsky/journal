@@ -3,9 +3,10 @@ package sample;
 import java.io.Serializable;
 
 public class User implements Serializable {
-
+    //ToDo encrypt password
     private int id;
     private String userName;
+    //TODO decide if user class needs to know password
     private String passWord;
 
 

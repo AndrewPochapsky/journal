@@ -20,7 +20,7 @@ public class LogInController implements Initializable{
     @FXML
     TextField newUserInput, returningUserInput;
     @FXML
-    PasswordField newPassInput, returningPassInput;
+    PasswordField newPassInput, returningPassInput, newPassREInput;
     @FXML
     Label invalidLogInLabel, invalidSignUpLabel;
 
@@ -28,6 +28,8 @@ public class LogInController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         invalidLogInLabel.setVisible(false);
         invalidSignUpLabel.setVisible(false);
+        logInButton.defaultButtonProperty().bind(logInButton.focusedProperty());
+        signUpButton.defaultButtonProperty().bind(signUpButton.focusedProperty());
     }
 
     public void handleLogInPress(ActionEvent event) throws SQLException, IOException{
@@ -40,7 +42,7 @@ public class LogInController implements Initializable{
 
         try(Connection con = DBConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(SQL);
-            ResultSet rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery()
             ){
             boolean successfulLogin = false;
             while(rs.next()){
@@ -64,34 +66,37 @@ public class LogInController implements Initializable{
 
         String username = newUserInput.getText();
         String password = newPassInput.getText();
-
+        String passwordRetyped= newPassREInput.getText();
         String SQL = "INSERT into users(id, username, password) VALUES (?,?,?)";
         Connection con = DBConnection.getConnection();
         PreparedStatement stmt = con.prepareStatement(SQL);
         try{
-            if(!username.trim().isEmpty() && !password.trim().isEmpty()){
-                stmt.setInt(1,getNextId());
-                stmt.setString(2,username);
-                stmt.setString(3,password);
+            if(password.equals(passwordRetyped)){
+                if(!username.trim().isEmpty() && !password.trim().isEmpty()){
+                    stmt.setInt(1,getNextId());
+                    stmt.setString(2,username);
+                    stmt.setString(3,password);
 
-                stmt.execute();
+                    stmt.execute();
 
-                User user = new User(getNextId()-1, username, password);
-                ProgramController.saveUser(user);
-                ProgramController.setCurrentUser(user);
-                controller.loadScene(event, "main");
-            }else{
+                    User user = new User(getNextId()-1, username, password);
+                    ProgramController.saveUser(user);
+                    ProgramController.setCurrentUser(user);
+                    controller.loadScene(event, "main");
+                }else{
+                    invalidSignUpLabel.setVisible(true);
+                    invalidSignUpLabel.setText("*All fields must be \nfilled*");
+                }
+            }
+            else{
                 invalidSignUpLabel.setVisible(true);
-                invalidSignUpLabel.setText("Can't be left empty");
+                invalidSignUpLabel.setText("*Passwords must match*");
             }
 
         }catch(SQLIntegrityConstraintViolationException e){
             invalidSignUpLabel.setVisible(true);
-            invalidSignUpLabel.setText("Username or password \nalready exists");
+            invalidSignUpLabel.setText("*Username or password \nalready exists*");
         }
-
-
-
     }
 
     private static int getNextId()throws SQLException{
@@ -107,11 +112,4 @@ public class LogInController implements Initializable{
     public void handleExitPress(){
         Platform.exit();
     }
-
-
-    //public Button button;
-
-
-
-
 }

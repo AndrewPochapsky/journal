@@ -31,15 +31,16 @@
             <Font name="Consolas" size="21.0" />
          </font>
       </Label>
-      <TextField fx:id="returningUserInput" layoutX="141.0" layoutY="175.0" prefHeight="31.0" prefWidth="121.0" promptText="username" />
-      <PasswordField fx:id="returningPassInput" layoutX="140.0" layoutY="216.0" prefHeight="31.0" prefWidth="124.0" promptText="password" />
+      <TextField fx:id="returningUserInput" layoutX="141.0" layoutY="175.0" prefHeight="31.0" prefWidth="136.0" promptText="username" />
+      <PasswordField fx:id="returningPassInput" layoutX="140.0" layoutY="216.0" prefHeight="31.0" prefWidth="136.0" promptText="password" />
       <Button fx:id="logInButton" layoutX="166.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleLogInPress" text="Login">
          <font>
             <Font name="Consolas" size="15.0" />
          </font>
       </Button>
-      <TextField fx:id="newUserInput" layoutX="420.0" layoutY="172.0" prefHeight="31.0" prefWidth="121.0" promptText="username" />
-      <PasswordField fx:id="newPassInput" layoutX="420.0" layoutY="213.0" prefHeight="31.0" prefWidth="121.0" promptText="password" />
+      <TextField fx:id="newUserInput" layoutX="421.0" layoutY="172.0" prefHeight="31.0" prefWidth="136.0" promptText="username" />
+      <PasswordField fx:id="newPassInput" layoutX="421.0" layoutY="213.0" prefHeight="31.0" prefWidth="136.0" promptText="password" />
+      <PasswordField fx:id="newPassREInput" layoutX="422.0" layoutY="254.0" prefHeight="31.0" prefWidth="136.0" promptText="retyped password" />
       <Label layoutX="320.0" layoutY="174.0" text="Username">
          <font>
             <Font name="Consolas" size="21.0" />
@@ -55,7 +56,7 @@
             <Font name="Consolas" size="25.0" />
          </font>
       </Label>
-      <Button fx:id="signUpButton" layoutX="413.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleSignUpPress" text="Create Account">
+      <Button fx:id="signUpButton" layoutX="422.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleSignUpPress" text="Create Account">
          <font>
             <Font name="Consolas" size="15.0" />
          </font>
@@ -75,5 +76,10 @@
             <Font name="Consolas" size="15.0" />
          </font>
       </Button>
+      <Label layoutX="321.0" layoutY="256.0" text="Retyped">
+         <font>
+            <Font name="Consolas" size="21.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

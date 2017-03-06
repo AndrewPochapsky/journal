@@ -13,13 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable{
-
-    @FXML
-    MenuBar menuBar;
-    @FXML
-    Menu fileMenu;
-    @FXML
-    MenuItem closeOption;
+    //TODO create a dark theme for program
     @FXML
     Label ownerLabel;
     public void handleCloseAction() throws IOException{
@@ -30,6 +24,5 @@ public class MainController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ownerLabel.setText(ProgramController.getCurrentUser().getUserName() +"'s Journal");
-        //System.out.println(ProgramController.getCurrentUser());
     }
 }

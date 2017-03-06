@@ -13,23 +13,38 @@
          <children>
             <MenuBar fx:id="menuBar">
               <menus>
-                <Menu fx:id="fileMenu" mnemonicParsing="false" text="File">
+                <Menu fx:id="fileMenu" mnemonicParsing="false" text="_File">
                   <items>
-                    <MenuItem fx:id="closeOption" mnemonicParsing="false" onAction="#handleCloseAction" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="Change User" />
+                    <MenuItem fx:id="closeOption" mnemonicParsing="false" onAction="#handleCloseAction" text="Exit" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                <Menu mnemonicParsing="false" text="_Edit">
                   <items>
                     <MenuItem mnemonicParsing="false" text="Delete" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu mnemonicParsing="false" text="_Help">
                   <items>
                     <MenuItem mnemonicParsing="false" text="About" />
                   </items>
                 </Menu>
               </menus>
             </MenuBar>
+            <HBox prefHeight="11.0" prefWidth="600.0" style="-fx-background-color: lightgrey;">
+               <children>
+                  <Region prefHeight="38.0" prefWidth="458.0" HBox.hgrow="ALWAYS" />
+                  <VBox prefHeight="31.0" prefWidth="146.0">
+                     <children>
+                        <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" text="Account Settings">
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </top>
