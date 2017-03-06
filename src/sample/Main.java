@@ -7,17 +7,22 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
+    Stage window;
     @Override
     public void start(Stage primaryStage) throws Exception{
+        window = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("logIn.fxml"));
-        primaryStage.setTitle("Journal");
-        primaryStage.setScene(new Scene(root, 600, 350));
-        primaryStage.show();
+        window.setTitle("Journal");
+        window.setScene(new Scene(root, 600, 400));
+        window.setResizable(false);
+        window.show();
     }
 
 
     public static void main(String[] args) {
         launch(args);
     }
+
+
 }
+

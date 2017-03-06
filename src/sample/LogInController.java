@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,7 +15,7 @@ import java.util.ResourceBundle;
 public class LogInController implements Initializable{
 
     @FXML
-    Button logInButton, signUpButton;
+    Button logInButton, signUpButton, exitButton;
     @FXML
     TextField newUserInput, returningUserInput;
     @FXML
@@ -54,10 +55,6 @@ public class LogInController implements Initializable{
                 System.out.println("Incorrect Password or Username\n----");
                 invalidLogInLabel.setVisible(true);
             }
-
-
-
-
         }catch(Exception e){
             System.out.println(e);
         }
@@ -103,7 +100,10 @@ public class LogInController implements Initializable{
         rs.last();
 
         return rs.getRow()+1;
+    }
 
+    public void handleExitPress(){
+        Platform.exit();
     }
 
 
