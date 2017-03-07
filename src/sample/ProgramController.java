@@ -32,18 +32,15 @@ public class ProgramController {
         User user = (User)objectInputStream.readObject();
         ProgramController.setCurrentUser(user);
     }
-
-    public void loadScene(ActionEvent event, String name) throws IOException{
+    //doesn't work for loading from a menu
+    public void loadScene(ActionEvent event, String name, boolean isMaximized) throws IOException{
         Parent parent = FXMLLoader.load(getClass().getResource(name+".fxml"));
-        Scene scene = new Scene(parent, 800, 500);
+        Scene scene = new Scene(parent, 1200, 800);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.hide();
         stage.setScene(scene);
-        stage.setMaximized(true);
+        stage.setMaximized(isMaximized);
+        stage.setResizable(true);
         stage.show();
     }
-
-
-
-
 }

@@ -51,7 +51,7 @@ public class LogInController implements Initializable{
                 System.out.println("Successful Login!\n----");
                 successfulLogin=true;
                 ProgramController.loadUser(rs.getInt("id"));
-                controller.loadScene(event, "main");
+                controller.loadScene(event, "main", false);
             }
             if(!successfulLogin){
                 System.out.println("Incorrect Password or Username\n----");
@@ -82,7 +82,7 @@ public class LogInController implements Initializable{
                     User user = new User(getNextId()-1, username, password);
                     ProgramController.saveUser(user);
                     ProgramController.setCurrentUser(user);
-                    controller.loadScene(event, "main");
+                    controller.loadScene(event, "main", false);
                 }else{
                     invalidSignUpLabel.setVisible(true);
                     invalidSignUpLabel.setText("*All fields must be \nfilled*");
