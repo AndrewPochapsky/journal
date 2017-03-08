@@ -1,6 +1,8 @@
 package sample;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User implements Serializable {
     //ToDo encrypt password
@@ -8,12 +10,21 @@ public class User implements Serializable {
     private String userName;
     //TODO decide if user class needs to know password
     private String passWord;
+    private List<Entry> journal;
 
+    public List<Entry> getJournal() {
+        return journal;
+    }
+
+    public void setJournal(List<Entry> journal) {
+        this.journal = journal;
+    }
 
     public User(int id, String userName, String passWord){
         this.id = id;
         this.userName=userName;
         this.passWord=passWord;
+        this.journal = new ArrayList<>();
     }
 
     public int getId() {
@@ -39,4 +50,9 @@ public class User implements Serializable {
     public void setPassWord(String passWord) {
         this.passWord = passWord;
     }
+
+    public void addEntry(Entry entry){
+        journal.add(entry);
+    }
+
 }
