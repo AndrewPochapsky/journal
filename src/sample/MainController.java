@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -33,10 +34,13 @@ public class MainController implements Initializable{
     TableView<Entry> entryTable;
     @FXML
     TableColumn<Entry, String> titleColumn, dateColumn;
+    @FXML
+    TextArea contentArea;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ownerLabel.setText(ProgramController.getCurrentUser().getUserName() +"'s Journal");
-        ProgramController.getCurrentUser().addEntry(new Entry("Testname", "Test Content"));
+        //test entries
+        ProgramController.getCurrentUser().addEntry(new Entry("Testname", "     Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"));
         ProgramController.getCurrentUser().addEntry(new Entry("Second", "SecondContent"));
         List<Entry>journal = ProgramController.getCurrentUser().getJournal();
         ObservableList<Entry> entries = FXCollections.observableArrayList();
@@ -44,24 +48,20 @@ public class MainController implements Initializable{
         for(Entry entry:journal){
             entries.add(entry);
         }
-
-
-        //entryTitle.textProperty().bind(selectedEntry.getName());
         titleColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("name"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("dateWritten"));
         entryTable.setItems(entries);
 
-        //Entry entry = entryTable.getSelectionModel().getSelectedItem();
         entryTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Entry>() {
             @Override
             public void changed(ObservableValue<? extends Entry> observable, Entry oldValue, Entry newValue) {
                 if(entryTable.getSelectionModel().getSelectedItem() !=null){
                     entryTitle.setText("Title: "+ newValue.getName());
                     entryDate.setText("Date Written: "+newValue.getDateWritten());
+                    contentArea.setText(newValue.getContent());
                 }
             }
         });
-        //entryTitle.setText(entry.getName());
 
     }
 
@@ -71,7 +71,6 @@ public class MainController implements Initializable{
     }
 
     public void handleLogOutAction()throws IOException{
-        //controller.loadScene(event, "logIn", false);
         ProgramController.saveUser(ProgramController.getCurrentUser());
 
         Parent parent = FXMLLoader.load(getClass().getResource("logIn.fxml"));
@@ -84,4 +83,18 @@ public class MainController implements Initializable{
         stage.show();
 
     }
+
+    public void handleAddEntry() throws IOException{
+        Parent parent = FXMLLoader.load(getClass().getResource("addEntry.fxml"));
+        //TODO set size of new scene equal to the size of the last scene(for a smoother transition
+        Scene scene = new Scene(parent, 1200, 800);
+        Stage stage = (Stage)menuBar.getScene().getWindow();
+
+        stage.setMaximized(false);
+        stage.setScene(scene);
+
+        stage.show();
+
+    }
+
 }

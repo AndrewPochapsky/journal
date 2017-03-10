@@ -20,7 +20,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="_Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem mnemonicParsing="false" onAction="#handleAddEntry" text="Add Entry" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="_Help">
@@ -30,18 +30,17 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <HBox prefHeight="11.0" prefWidth="600.0" style="-fx-background-color: lightgrey;">
+            <HBox style="-fx-background-color: lightgrey;">
                <children>
                   <Region prefHeight="38.0" prefWidth="458.0" HBox.hgrow="ALWAYS" />
-                  <VBox prefHeight="31.0" prefWidth="146.0">
-                     <children>
-                        <Button fx:id="accSettings" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" text="Account Settings">
-                           <VBox.margin>
-                              <Insets bottom="8.0" left="5.0" right="5.0" top="5.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
+                  <Button fx:id="accSettings" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="160.0" text="Account Settings">
+                     <font>
+                        <Font name="Consolas" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
          </children>
@@ -70,13 +69,13 @@
                      <children>
                         <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="314.0" text="Journal Entries" underline="true">
                            <font>
-                              <Font name="Consolas" size="15.0" />
+                              <Font name="Consolas Bold" size="22.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="entryTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="entryTable" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                           <columns>
-                            <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
-                            <TableColumn fx:id="titleColumn" prefWidth="211.0" text="Title" />
+                            <TableColumn fx:id="dateColumn" maxWidth="1.7976931348623157E308" minWidth="20.0" prefWidth="100.0" text="Date" />
+                            <TableColumn fx:id="titleColumn" editable="false" maxWidth="1.7976931348623157E308" prefWidth="211.0" text="Title" />
                           </columns>
                         </TableView>
                      </children>
@@ -87,7 +86,7 @@
                <children>
                   <VBox prefHeight="302.0" prefWidth="302.0" AnchorPane.bottomAnchor="-144.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label fx:id="entryTitle" text="Title: SampleEntry">
+                        <Label fx:id="entryTitle" text="Title: -none selected-">
                            <VBox.margin>
                               <Insets left="7.0" />
                            </VBox.margin>
@@ -95,7 +94,7 @@
                               <Font name="Consolas" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="entryDate" layoutX="17.0" layoutY="10.0" text="Date Written: 00/00/0000">
+                        <Label fx:id="entryDate" layoutX="17.0" layoutY="10.0" text="Date Written: -none selected-">
                            <VBox.margin>
                               <Insets left="7.0" />
                            </VBox.margin>
@@ -103,7 +102,7 @@
                               <Font name="Consolas" size="15.0" />
                            </font>
                         </Label>
-                        <TextArea editable="false" prefHeight="271.0" prefWidth="144.0" VBox.vgrow="ALWAYS">
+                        <TextArea fx:id="contentArea" editable="false" prefHeight="271.0" prefWidth="144.0" wrapText="true" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets bottom="5.0" left="7.0" right="10.0" top="2.0" />
                            </VBox.margin>
