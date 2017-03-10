@@ -26,9 +26,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-        Date date = new Date();
-        System.out.println(df.format(date));
         launch(args);
     }
 

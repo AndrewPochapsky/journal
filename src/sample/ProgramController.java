@@ -33,11 +33,14 @@ public class ProgramController {
         ProgramController.setCurrentUser(user);
     }
     //doesn't work for loading from a menu
-    public void loadScene(ActionEvent event, String name, boolean isMaximized) throws IOException{
+    public void loadScene(ActionEvent event, String name, boolean isMaximized, boolean isClosed) throws IOException{
         Parent parent = FXMLLoader.load(getClass().getResource(name+".fxml"));
         Scene scene = new Scene(parent, 1200, 800);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.hide();
+        if(isClosed){
+            stage.hide();
+        }
+
         stage.setScene(scene);
         stage.setMaximized(isMaximized);
         stage.setResizable(true);
