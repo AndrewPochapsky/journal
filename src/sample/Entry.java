@@ -9,14 +9,14 @@ public class Entry implements Serializable{
 
     private String name;
     private String content;
-    private Date dateWritten;
+    private String dateWritten;
     DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 
 
-    public Entry(String name, String content){
+    public Entry(String name, String dateWritten, String content){
         this.name = name;
         this.content = content;
-        dateWritten = new Date();
+        this.dateWritten = dateWritten;
 
     }
 
@@ -38,7 +38,7 @@ public class Entry implements Serializable{
     }
 
     public String getDateWritten() {
-        return df.format(dateWritten);
+        return dateWritten;
     }
 
 

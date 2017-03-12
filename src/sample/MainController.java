@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable{
     //TODO create a dark theme for program
+
     ProgramController controller = new ProgramController();
     @FXML
     Label ownerLabel, entryDate, entryTitle;
@@ -94,7 +95,26 @@ public class MainController implements Initializable{
         stage.setScene(scene);
 
         stage.show();
+    }
+
+    public void handleDeleteEntry(ActionEvent event) throws IOException{
+        Entry entryToRemove = entryTable.getSelectionModel().getSelectedItem();
+        if(entryToRemove!=null){
+            AlertBox box = new AlertBox("Confirmation", "Are you sure?");
+            box.display();
+            if(box.isDeleteEntry()){
+                ProgramController.getCurrentUser().removeEntry(entryToRemove);
+                //"refresh" the window
+                controller.loadScene(event, "main", false, false);
+            }
+
+        }
 
     }
+
+    public void handleEditEntry(){
+
+    }
+
 
 }

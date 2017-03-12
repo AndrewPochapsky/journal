@@ -8,6 +8,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ProgramController {
 
@@ -46,4 +49,11 @@ public class ProgramController {
         stage.setResizable(true);
         stage.show();
     }
+
+    public static String getCurrentDate(){
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        Date currentDate = new Date();
+        return df.format(currentDate);
+    }
+
 }

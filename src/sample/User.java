@@ -55,4 +55,8 @@ public class User implements Serializable {
         journal.add(entry);
     }
 
+    public void removeEntry(Entry entry){
+        journal.remove(entry);
+    }
+
 }
