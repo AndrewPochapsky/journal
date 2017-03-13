@@ -15,6 +15,15 @@ import java.util.Date;
 public class ProgramController {
 
     private static User currentUser;
+    private static Entry currentEntry;
+
+    public static Entry getCurrentEntry() {
+        return currentEntry;
+    }
+
+    public static void setCurrentEntry(Entry currentEntry) {
+        ProgramController.currentEntry = currentEntry;
+    }
 
     public static User getCurrentUser() {
         return currentUser;

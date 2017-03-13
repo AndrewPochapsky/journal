@@ -33,8 +33,11 @@ public class AlertBox {
 
         Label label = new Label();
         label.setText(message);
+        label.setStyle("-fx-font: 15 consolas;");
         Button yesButton = new Button("Yes");
         Button noButton = new Button("No");
+        yesButton.setStyle("-fx-font: 15 consolas;");
+        noButton.setStyle("-fx-font: 15 consolas;");
         yesButton.setOnAction(e -> {
             deleteEntry=true;
             window.close();
@@ -47,11 +50,12 @@ public class AlertBox {
         });
         VBox layout = new VBox(10);
         layout.getChildren().addAll(label, yesButton, noButton);
-        layout.setAlignment(Pos.CENTER);
+        layout.setAlignment(Pos.TOP_CENTER);
 
         //Display window and wait for it to be closed before returning
-        Scene scene = new Scene(layout);
+        Scene scene = new Scene(layout, 200, 100);
         window.setScene(scene);
+        window.setResizable(false);
         window.showAndWait();
     }
 

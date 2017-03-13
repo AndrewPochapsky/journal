@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EditEntryController">
+    <top>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu mnemonicParsing="false" text="_File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Close" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="_Edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Delete" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="_Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="About" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <HBox style="-fx-background-color: lightgrey;">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#handleBackAction" prefHeight="31.0" prefWidth="67.0" text="Back">
+                            <font>
+                                <Font name="Consolas" size="15.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#handleSaveEntry" text="Save ">
+                            <HBox.margin>
+                                <Insets bottom="5.0" top="5.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Region maxWidth="1.7976931348623157E308" prefHeight="42.0" prefWidth="259.0" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="180.0" text="Account Settings">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="Consolas" size="15.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+    <bottom>
+        <HBox style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
+            <children>
+                <Label fx:id="ownerLabel" text="Label">
+                    <HBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                    </HBox.margin>
+                    <font>
+                        <Font name="Consolas" size="15.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+    </bottom>
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox>
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Title:">
+                            <font>
+                                <Font name="Consolas" size="19.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="5.0" top="7.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="entryTitleInput" maxWidth="1.7976931348623157E308" prefHeight="28.0" prefWidth="524.0" promptText="title" HBox.hgrow="ALWAYS">
+                            <font>
+                                <Font name="Consolas" size="15.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="4.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Label text="Date:">
+                            <font>
+                                <Font name="Consolas" size="19.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="5.0" top="7.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="entryDateInput" editable="false" maxWidth="-Infinity" prefHeight="31.0" prefWidth="169.0" style="-fx-text-fill: grey;" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets left="14.0" top="5.0" />
+                            </HBox.margin>
+                        </TextField>
+                  <Label fx:id="savedLabel" text="Entry Saved!" textFill="#00bf06">
+                     <font>
+                        <Font name="Consolas" size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="5.0" top="7.0" />
+                     </HBox.margin>
+                  </Label>
+                    </children>
+                </HBox>
+                <HBox prefHeight="235.0" prefWidth="472.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <TextArea fx:id="entryContentInput" prefHeight="235.0" prefWidth="458.0" promptText="content" wrapText="true" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="72.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </TextArea>
+                    </children>
+                </HBox>
+            </children></VBox>
+    </center>
+</BorderPane>
