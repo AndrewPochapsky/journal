@@ -33,8 +33,6 @@ public class LogInController implements Initializable{
     }
 
     public void handleLogInPress(ActionEvent event) throws SQLException, IOException{
-        //String databaseUsername = "";
-        //String databasePassword = "";
         String username = returningUserInput.getText();
         String password = returningPassInput.getText();
 
@@ -46,8 +44,6 @@ public class LogInController implements Initializable{
             ){
             boolean successfulLogin = false;
             while(rs.next()){
-                //databaseUsername = rs.getString("username");
-                //databasePassword = rs.getString("password");
                 System.out.println("Successful Login!\n----");
                 successfulLogin=true;
                 ProgramController.loadUser(rs.getInt("id"));

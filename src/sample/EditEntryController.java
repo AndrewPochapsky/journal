@@ -36,16 +36,24 @@ public class EditEntryController implements Initializable{
         controller.loadScene(event, "main", false, false);
     }
 
-    public void handleSaveEntry(ActionEvent event)throws IOException,InterruptedException {
+    public void handleSaveEntry()throws IOException {
         if(entryTitleInput.getText().equals("")){
             entryTitleInput.setText("Entry of "+ ProgramController.getCurrentEntry().getDateWritten());
         }
         Entry newEntry = new Entry(entryTitleInput.getText(),entryDateInput.getText(), entryContentInput.getText());
         //gets the index of entry being edited and replaces it with the "new" entry
-        int entryIndex =  ProgramController.getCurrentUser().getJournal().indexOf(ProgramController.getCurrentEntry());
-        ProgramController.getCurrentUser().getJournal().set(entryIndex, newEntry);
-        ProgramController.setCurrentEntry(newEntry);
+        ProgramController.saveEntry(newEntry);
         savedLabel.setVisible(true);
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        // your code here
+                        savedLabel.setVisible(false);
+                    }
+                },
+                1000
+        );
 
     }
 

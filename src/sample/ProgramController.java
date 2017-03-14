@@ -64,5 +64,12 @@ public class ProgramController {
         Date currentDate = new Date();
         return df.format(currentDate);
     }
+    public static void saveEntry(Entry entry){
+        int entryIndex =  ProgramController.getCurrentUser().getJournal().indexOf(ProgramController.getCurrentEntry());
+        ProgramController.getCurrentUser().getJournal().set(entryIndex, entry);
+        ProgramController.setCurrentEntry(entry);
+        System.out.println("Entry saved");
+    }
+
 
 }

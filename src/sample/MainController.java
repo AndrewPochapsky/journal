@@ -61,8 +61,8 @@ public class MainController implements Initializable{
         for(Entry entry:journal){
             entries.add(entry);
         }
-        titleColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("name"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("dateWritten"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("dateWritten"));
         entryTable.setItems(entries);
 
         entryTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Entry>() {
